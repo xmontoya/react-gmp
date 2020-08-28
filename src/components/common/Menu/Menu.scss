@@ -1,0 +1,27 @@
+@import 'assets/styles/variables';
+
+.mainMenu {
+    display: flex;
+    justify-content: space-between;
+    color: $white-color;
+    width: 100%;
+    padding-top: 10px;
+    border-bottom: 1px solid $gray-light-color;
+}
+
+.leftSection {
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+
+    p:nth-child(1) {
+        border-bottom: 1px solid $red-color;
+        padding-bottom: 10px;
+    }
+}
+
+.rightSection {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+}

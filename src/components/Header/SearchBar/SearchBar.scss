@@ -1,0 +1,35 @@
+@import 'assets/styles/variables';
+
+.searchSection {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    width: 100%;
+    margin: 25px 0 0 0;
+}
+
+.searchTitle {
+    color: $white-color;
+    font-weight: 100;
+    font-size: 30px;
+    letter-spacing: 4px;
+}
+
+.searchBar {
+    width: 80%;
+
+    input {
+        padding: 8px;
+        width: 100%;
+        background-color: $black-color;
+        color: $gray-light-color;
+        border: none;
+        box-shadow: inset 1px 1px 2px $gray-color;
+    }
+}
+
+.searchMoviesButton {
+    background-color: $red-color;
+    color: $white-color;
+    padding: 0 40px;
+}
