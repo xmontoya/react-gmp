@@ -1,0 +1,48 @@
+@import 'assets/styles/variables';
+
+.card {
+    height: 650px;
+    width: 400px;
+    color: $white-color;
+    padding: 10px 40px;
+}
+
+.image {
+    height: 80%;
+    width: 100%;
+    object-fit: contain;
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.info {
+    height: auto;
+    margin: 10px 0;
+}
+
+.titleSection {
+    width: 100%;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.year {
+    border: 1px solid;
+    border-color: $white-color;
+    border-radius: 6px;
+    font-size:20px;
+    font-weight: lighter;
+    margin-left: 100px;
+    padding: 3px 6px;
+}
+
+.categories {
+    color: $gray-light-color;
+    font-size: 16px;
+    margin: 5px 0 0 0;
+}

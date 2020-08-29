@@ -1,0 +1,14 @@
+@import 'assets/styles/variables';
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+.movieCount {
+    padding: 20px 0;
+}
+
+.movieCountLabel {
+    color: $white-color;
+}

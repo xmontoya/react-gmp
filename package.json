@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production --config ./config/webpack.config.js",
+    "dev": "webpack-dev-server --config ./config/webpack.config.js --watch --debug",
+    "start": "npm run dev -- --env.MODE=mock",
     "test": "jest --passWithNoTests"
   },
   "repository": {
@@ -20,18 +21,29 @@
   "homepage": "https://github.com/xmontoya/react-gmp#readme",
   "devDependencies": {
     "@babel/core": "^7.11.0",
+    "@babel/plugin-proposal-export-default-from": "^7.10.4",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "@testing-library/react": "^10.4.7",
     "babel-loader": "^8.1.0",
+    "core-js": "^3.6.5",
+    "css-loader": "^4.2.1",
+    "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
     "jest": "^26.2.1",
+    "mini-css-extract-plugin": "^0.10.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^9.0.3",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
