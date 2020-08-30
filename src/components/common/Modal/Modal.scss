@@ -1,0 +1,42 @@
+@import 'assets/styles/variables';
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    background: rgba($background-color, 0.8);
+    z-index: 1;
+}
+
+.modalMain {
+    position: fixed;
+    background: $background-color;
+    width: auto;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+  
+.displayBlock {
+    display: block;
+}
+  
+.displayNone {
+    display: none;
+}
+
+.modalBody {
+    padding-top: 10px;
+}
+
+.closeButton {
+    background-color: $background-color;
+    border: none;
+    color: $white-color;
+    float: right;
+    margin: 8px;
+}

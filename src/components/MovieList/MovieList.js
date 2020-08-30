@@ -4,14 +4,14 @@ import React from 'react';
 
 import PropTypes from 'prop-types'
 
-import MovieCard from "./MovieCard";
+import MovieCard from "components/MovieCard";
 
 const COMPONENT_PROPS = {
     movies: PropTypes.arrayOf(PropTypes.shape({
-        categories: PropTypes.string,
-        image: PropTypes.string,
+        genres: PropTypes.array,
+        poster_path: PropTypes.string,
         title: PropTypes.string,
-        year: PropTypes.number
+        release_date: PropTypes.string
     }))
 };
 

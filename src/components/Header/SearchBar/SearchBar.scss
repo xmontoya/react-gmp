@@ -2,10 +2,10 @@
 
 .searchSection {
     display: flex;
-    justify-content: space-between;
     height: auto;
-    width: 100%;
+    justify-content: space-between;
     margin: 25px 0 0 0;
+    width: 100%;
 }
 
 .searchTitle {
@@ -19,12 +19,14 @@
     width: 80%;
 
     input {
+        background-color: $black-color;
+        border: none;
+        border-radius: 3px;
+        box-shadow: inset 1px 1px 2px $gray-color;
+        color: $gray-light-color;
+        height: 28px;
         padding: 8px;
         width: 100%;
-        background-color: $black-color;
-        color: $gray-light-color;
-        border: none;
-        box-shadow: inset 1px 1px 2px $gray-color;
     }
 }
 

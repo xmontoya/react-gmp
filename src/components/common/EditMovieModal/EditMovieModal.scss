@@ -1,0 +1,53 @@
+@import 'assets/styles/variables';
+
+.editCard {
+    height: 500px;
+    margin: 20px 50px;
+    width: 450px;
+}
+
+.title {
+    color: $white-color;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.footer {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.footerButton {
+    font-size: 16px;
+    padding: 8px;
+}
+
+.resetButton {
+    background-color: $background-color;
+    border: 1px solid;
+    border-color: $red-color;
+    color: $red-color;
+    margin-right: 6px;
+}
+
+.submitButton {
+    background-color: $red-color;
+    color: $white-color;
+}
+
+.movieIdLabel {
+    color: $red-color;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    margin-top: 10px;
+}
+
+.movieIdValue {
+    color: $white-color;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
