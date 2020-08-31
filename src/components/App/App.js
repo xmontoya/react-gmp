@@ -9,15 +9,15 @@ import Home from 'components/Home';
 
 const App = () => {
     return (
-        <ErrorBoundary>
-            <div className={styles.app}>
+        <div className={styles.app}>
+            <ErrorBoundary>
                 <Header />
                 <div className={styles.mainContent}>
                     <Home />
                 </div>
                 <Footer />
-            </div>
-        </ErrorBoundary>
+            </ErrorBoundary>
+        </div>
     );
 }
 

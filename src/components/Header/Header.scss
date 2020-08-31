@@ -40,10 +40,11 @@
     padding: 16px 0px;
 }
 
-.addMovieButton {
+.buttonAddMovie {
     color: $red-color;
+    margin-right: 16px;
     padding: 8px 8px;
-    background-color: rgba($color: $gray-light-color, $alpha: 0.3);
+    background-color: rgba($color: $gray-light-color, $alpha: 0.9);
 }
 
 .mainSection {

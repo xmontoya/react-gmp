@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://xmontoya@github.com/xmontoya/react-gmp.git"
   },
-  "author": "",
+  "author": "Xavier Montoya",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/xmontoya/react-gmp/issues"
@@ -42,6 +42,9 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",

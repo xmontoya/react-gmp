@@ -1,0 +1,16 @@
+export const ADD_MOVIE = 'ADD MOVIE';
+export const CONFIRM = 'CONFIRM';
+export const DELETE = 'Delete';
+export const DELETE_MOVIE = 'DELETE MOVIE';
+export const EDIT = 'Edit';
+export const EDIT_MOVIE = 'EDIT MOVIE';
+export const GENRE = 'GENRE';
+export const MOVIE_ID = 'MOVIE ID';
+export const MOVIE_URL = 'MOVIE URL';
+export const OVERVIEW = 'OVERVIEW';
+export const RESET = 'RESET';
+export const RELEASE_DATE = 'RELEASE DATE';
+export const RUNTIME = 'RUNTIME';
+export const SEARCH = 'SEARCH';
+export const SUBMIT = 'SUBMIT';
+export const TITLE = 'TITLE';
