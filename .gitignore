@@ -1,3 +1,16 @@
 # dependencies
 /node_modules
 /dist
+
+# eslint
+.eslintcache
+cache
+
+# jest
+coverage
+cobertura.xml
+test-results.xml
+test-report.xml
+
+# others
+/.vscode

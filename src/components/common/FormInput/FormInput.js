@@ -8,27 +8,32 @@ const COMPONENT_PROPS = {
     name: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     type: PropTypes.string,
-    value: PropTypes.any
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 const DEFAULT_PROPS = {
     placeholder: '',
     type: 'text',
-    value: '',
+    value: ''
 };
 
 const FormInput = ({ label, name, placeholder, type, value }) => {
-
     const handleChange = e => {
         e.preventDefault();
     };
 
     return (
         <div className={styles.inputContainer}>
-            <label className={styles.inputLabel} htmlFor={name} >
+            <label className={styles.inputLabel} htmlFor={name}>
                 {label}
             </label>
-            <input className={styles.inputField} name={name} placeholder={placeholder} type={type} value={value} onChange={handleChange} />
+            <input
+                className={styles.inputField}
+                name={name}
+                placeholder={placeholder}
+                type={type}
+                value={value}
+                onChange={handleChange} />
         </div>
     );
 };

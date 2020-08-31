@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieDetails Component should render the correct structure 1`] = `
+<DocumentFragment>
+  <div
+    class="detailsContainer"
+  >
+    <div
+      class="detailsImage"
+    >
+      <img
+        alt=""
+        class="image"
+        src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/oEbYyyl3w2dptDZCfXr8NHEHFkl.jpg"
+      />
+    </div>
+    <div
+      class="detailsInfo"
+    >
+      <div
+        class="titleSection"
+      >
+        <div
+          class="titleContainer"
+        >
+          <span
+            class="title"
+          >
+            Kill Bill: Vol. 2
+          </span>
+        </div>
+        <div
+          class="scoreContainer"
+        >
+          <span
+            class="score"
+          >
+            7.7
+          </span>
+        </div>
+      </div>
+      <div
+        class="genresSection"
+      >
+        <span>
+          Action, Crime, Thriller
+        </span>
+      </div>
+      <div
+        class="infoSection"
+      >
+        <span>
+          2004
+        </span>
+        <span
+          class="duration"
+        >
+          136 min
+        </span>
+      </div>
+      <div
+        class="overviewSection"
+      >
+        <p>
+          The Bride unwaveringly continues on her roaring rampage of revenge against the band of assassins who had tried to kill her and her unborn child. She visits each of her former associates one-by-one, checking off the victims on her Death List Five until there's nothing left to do … but kill Bill.
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

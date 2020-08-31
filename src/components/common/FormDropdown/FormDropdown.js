@@ -6,13 +6,15 @@ import PropTypes from 'prop-types';
 const COMPONENT_PROPS = {
     label: PropTypes.string,
     name: PropTypes.string.isRequired,
-    options: PropTypes.array,
-    value: PropTypes.any
+    options: PropTypes.arrayOf(PropTypes.object).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    onChange: PropTypes.func
 };
 
 const DEFAULT_PROPS = {
     label: '',
-    value: ''
+    value: '',
+    onChange: null
 };
 
 const FormDropdown = ({ label, name, options, value, onChange }) => {
@@ -27,12 +29,14 @@ const FormDropdown = ({ label, name, options, value, onChange }) => {
     };
 
     const dropdownLabel = label && (
-        <label className={styles.inputLabel} htmlFor={name} >
+        <label className={styles.inputLabel} htmlFor={name}>
             {label}
         </label>
     );
 
-    const dropdownOptions = options.map((option, index) => <option key={index} value={option.value}>{option.label}</option>);
+    const dropdownOptions = options.map(option => (
+        <option key={option.value} value={option.value}>{option.label}</option>
+    ));
 
     return (
         <div className={styles.inputContainer}>

@@ -1,0 +1,68 @@
+options:
+  merge-default-rules: false
+  formatter: stylish
+  max-warnings: 10
+files:
+  include: './src/**/*.scss'
+rules:
+  # errors (severity: 2)
+  # warnings (severity: 1)
+  clean-import-paths:
+    - 2
+  extends-before-declarations:
+    - 2
+  extends-before-mixins:
+    - 2
+  mixins-before-declarations:
+    - 2
+    -
+      exclude: []
+  nesting-depth:
+    - 2
+    -
+      max-depth: 3
+    - 2
+    -
+      max-depth: 1
+  no-color-keywords:
+    - 2
+  no-invalid-hex:
+    - 2
+  no-misspelled-properties:
+    - 2
+    - extra-properties: ["composes"]
+  no-url-protocols:
+    - 2
+  one-declaration-per-line:
+    - 2
+  trailing-semicolon:
+    - 2
+  variable-name-format:
+    - 2
+  hex-length:
+    - 2
+    -
+      style: long
+  no-duplicate-properties:
+    - 2
+    - exclude: ["composes"]
+  no-important:
+    - 2
+  no-mergeable-selectors:
+    - 2
+  no-trailing-whitespace:
+    - 2
+  no-trailing-zero:
+    - 2
+  no-vendor-prefixes:
+    - 2
+  space-after-comma:
+    - 2
+  space-around-operator:
+    - 2
+  space-before-brace:
+    - 2
+  space-after-colon:
+    - 2
+  url-quotes:
+    -2
