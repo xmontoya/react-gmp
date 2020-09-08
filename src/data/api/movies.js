@@ -20,7 +20,7 @@ const movieList = [
 const movies = movieListTransform(movieList);
 
 const getMovie = id => {
-    const [selectedMovie] = movieList.filter(movie => movie.id === id);
+    const selectedMovie = movieList.find(movie => movie.id === id);
 
     return movieTransform(selectedMovie);
 };

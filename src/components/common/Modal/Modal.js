@@ -3,8 +3,6 @@ import styles from './Modal.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import classnames from 'classnames';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from 'components/common/Button';
@@ -15,10 +13,12 @@ const COMPONENT_PROPS = {
 };
 
 const Modal = ({ children, show, onCloseModal }) => {
-    const showHideClassName = show ? styles.displayBlock : styles.displayNone;
+    if (!show) {
+        return null;
+    }
 
     return (
-        <div className={classnames(styles.modal, showHideClassName)}>
+        <div className={styles.modal}>
             <section className={styles.modalMain}>
                 <Button className={styles.closeButton} onClick={onCloseModal}>
                     <FontAwesomeIcon icon="times" />

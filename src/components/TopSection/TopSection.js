@@ -12,8 +12,6 @@ import MovieDetails from 'components/common/MovieDetails';
 
 import SearchBar from 'components/TopSection/SearchBar';
 
-import useMovie from 'hooks/useMovie';
-
 import * as Labels from 'constants/Labels';
 
 const COMPONENT_PROPS = {
@@ -27,7 +25,6 @@ const DEFAULT_PROPS = {
 
 const TopSection = ({ movieId, onMovieIdChange }) => {
     const [showHideModal, setShowHideModal] = useState(false);
-    const { movie } = useMovie(movieId);
 
     const handleShowModal = () => {
         setShowHideModal(true);
@@ -62,7 +59,7 @@ const TopSection = ({ movieId, onMovieIdChange }) => {
     );
 
     const movieDetails = movieId && (
-        <MovieDetails movie={movie} />
+        <MovieDetails movieId={movieId} />
     );
 
     const headerDetailsCls = movieId ? styles.headerDetails : null;
