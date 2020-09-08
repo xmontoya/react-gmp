@@ -9,6 +9,8 @@ import Button from 'components/common/Button';
 
 import MovieMenu from './MovieMenu';
 
+const MOVIE_IMAGE_DEFAULT = 'src/assets/images/not-found.png';
+
 const COMPONENT_PROPS = {
     movie: PropTypes.shape({
         id: PropTypes.number,
@@ -29,6 +31,7 @@ const DEFAULT_PROPS = {
 const MovieCard = ({ movie, onMovieIdChange, onShowDeleteModal, onShowEditModal }) => {
     const { id, genres, posterPath, title, releaseDate } = movie;
     const [showMenu, setShowMenu] = useState(false);
+    const [moviePosterPath, setMoviePosterPath] = useState(posterPath);
 
     const handleShowEditModal = useCallback(() => {
         onShowEditModal(id);
@@ -36,9 +39,9 @@ const MovieCard = ({ movie, onMovieIdChange, onShowDeleteModal, onShowEditModal 
     }, [id, onShowEditModal, setShowMenu]);
 
     const handleShowDeleteModal = useCallback(() => {
-        onShowDeleteModal();
+        onShowDeleteModal(id);
         setShowMenu(false);
-    }, [onShowDeleteModal, setShowMenu]);
+    }, [id, onShowDeleteModal, setShowMenu]);
 
     const handleMovieClick = useCallback(() => {
         onMovieIdChange(id);
@@ -51,6 +54,10 @@ const MovieCard = ({ movie, onMovieIdChange, onShowDeleteModal, onShowEditModal 
     const handleCloseMenu = useCallback(() => {
         setShowMenu(false);
     }, [setShowMenu]);
+
+    const handleImageError = useCallback(() => {
+        setMoviePosterPath(MOVIE_IMAGE_DEFAULT);
+    }, [setMoviePosterPath]);
 
     const [releaseYear] = releaseDate.split('-');
     const genresList = genres.join(', ');
@@ -68,7 +75,7 @@ const MovieCard = ({ movie, onMovieIdChange, onShowDeleteModal, onShowEditModal 
                         onDelete={handleShowDeleteModal}
                         onEdit={handleShowEditModal} />
                     <Button className={styles.movieSelectButton} onClick={handleMovieClick}>
-                        <img className={styles.image} src={posterPath} alt="" />
+                        <img className={styles.image} src={moviePosterPath} alt="" onError={handleImageError} />
                     </Button>
                 </div>
                 <div className={styles.info}>

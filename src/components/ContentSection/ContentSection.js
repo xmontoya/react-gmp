@@ -6,18 +6,6 @@ import PropTypes from 'prop-types';
 import Menu from 'components/common/Menu';
 import MovieList from 'components/common/MovieList';
 
-import { movies } from 'data/api/movies';
-
-const sortMovies = property => (a, b) => {
-    if (a[property] < b[property]) {
-        return -1;
-    } else if (a[property] > b[property]) {
-        return 1;
-    }
-
-    return 0;
-};
-
 const COMPONENT_PROPS = {
     onMovieIdChange: PropTypes.func.isRequired
 };
@@ -29,8 +17,6 @@ const ContentSection = ({ onMovieIdChange }) => {
         setSorting(sortingValue);
     }, [setSorting]);
 
-    movies.sort(sortMovies(sorting));
-
     return (
         <div className={styles.mainContent}>
             <div className={styles.container}>
@@ -40,7 +26,7 @@ const ContentSection = ({ onMovieIdChange }) => {
                         39 movies found
                     </span>
                 </div>
-                <MovieList movies={movies} onMovieIdChange={onMovieIdChange} />
+                <MovieList sorting={sorting} onMovieIdChange={onMovieIdChange} />
             </div>
         </div>
     );

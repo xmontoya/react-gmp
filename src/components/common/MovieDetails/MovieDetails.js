@@ -1,9 +1,15 @@
 import styles from './MovieDetails.scss';
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { getMovieById } from 'redux/actions/movieActions';
+
+const mapStateToProps = state => ({ movie: state.movie });
+
 const COMPONENT_PROPS = {
+    getMovieById: PropTypes.func.isRequired,
     movie: PropTypes.shape({
         genres: PropTypes.arrayOf(PropTypes.string),
         overview: PropTypes.string,
@@ -12,14 +18,25 @@ const COMPONENT_PROPS = {
         runtime: PropTypes.number,
         voteAverage: PropTypes.number,
         title: PropTypes.string
-    }).isRequired
+    }),
+    movieId: PropTypes.number.isRequired
 };
 
-const MovieDetails = ({ movie }) => {
+const DEFAULT_PROPS = {
+    movie: {}
+};
+
+const DetailsContainer = ({ getMovieById, movie, movieId }) => {
     const { genres = [], overview, posterPath, releaseDate = '', runtime, title, voteAverage } = movie;
 
     const [releaseYear] = releaseDate.split('-');
     const genresList = genres.join(', ');
+
+    useEffect(() => {
+        if (movieId) {
+            getMovieById(movieId);
+        }
+    }, [getMovieById, movieId]);
 
     return (
         <div className={styles.detailsContainer}>
@@ -50,6 +67,9 @@ const MovieDetails = ({ movie }) => {
     );
 };
 
-MovieDetails.propTypes = COMPONENT_PROPS;
+DetailsContainer.propTypes = COMPONENT_PROPS;
+DetailsContainer.defaultProps = DEFAULT_PROPS;
+
+const MovieDetails = connect(mapStateToProps, { getMovieById })(DetailsContainer);
 
 export default MovieDetails;

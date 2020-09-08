@@ -1,33 +1,47 @@
 import styles from './MovieList.scss';
 
-import React, { Fragment, useCallback, useState } from 'react';
-
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import Button from 'components/common/Button';
 import EditMovieModal from 'components/common/EditMovieModal';
 import DeleteMovieModal from 'components/common/DeleteMovieModal';
 
 import MovieCard from 'components/common/MovieCard';
 
+import { getMovies } from 'redux/actions/movieActions';
+
+import { NEXT, PREVIOUS } from 'constants/Labels';
+
+const mapStateToProps = state => ({ movies: state.movies });
+
 const COMPONENT_PROPS = {
+    getMovies: PropTypes.func.isRequired,
     movies: PropTypes.arrayOf(PropTypes.shape({
         genres: PropTypes.array,
         posterPath: PropTypes.string,
         title: PropTypes.string,
         releaseDate: PropTypes.string
     })),
+    sorting: PropTypes.string,
     onMovieIdChange: PropTypes.func.isRequired
 };
 
 const DEFAULT_PROPS = {
-    movies: []
+    movies: [],
+    sorting: 'release_date'
 };
 
-const MovieList = ({ movies, onMovieIdChange }) => {
+const ListContainer = ({ getMovies, movies, sorting, onMovieIdChange }) => {
     const [movieId, setMovieId] = useState(null);
+    const [offset, setOffset] = useState(0);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-
     const [showEditModal, setShowEditModal] = useState(false);
+
+    useEffect(() => {
+        getMovies(10, offset, sorting);
+    }, [getMovies, offset, sorting]);
 
     const handleShowEditModal = useCallback(selectedMovieId => {
         setMovieId(selectedMovieId);
@@ -39,13 +53,24 @@ const MovieList = ({ movies, onMovieIdChange }) => {
         setShowEditModal(false);
     }, [setMovieId, setShowEditModal]);
 
-    const handleShowDeleteModal = useCallback(() => {
+    const handleShowDeleteModal = useCallback(selectedMovieId => {
+        setMovieId(selectedMovieId);
         setShowDeleteModal(true);
-    }, [setShowDeleteModal]);
+    }, [setMovieId, setShowDeleteModal]);
 
     const handleCloseDeleteModal = useCallback(() => {
+        setMovieId(null);
         setShowDeleteModal(false);
-    }, [setShowDeleteModal]);
+    }, [setMovieId, setShowDeleteModal]);
+
+    const handleClickPrevious = useCallback(() => {
+        const provOffset = offset > 10 ? offset - 10 : 0;
+        setOffset(provOffset);
+    }, [offset, setOffset]);
+
+    const handleClickNext = useCallback(() => {
+        setOffset(offset + 10);
+    }, [offset, setOffset]);
 
     const movieList = movies.map(movie => (
         <MovieCard
@@ -56,23 +81,38 @@ const MovieList = ({ movies, onMovieIdChange }) => {
             onShowEditModal={handleShowEditModal} />
     ));
 
+    const previousButton = offset > 0 && (
+        <Button className={styles.pagination} onClick={handleClickPrevious}>
+            {PREVIOUS}
+        </Button>
+    );
+
     return (
         <Fragment>
             <div className={styles.list}>
                 {movieList}
+            </div>
+            <div>
+                {previousButton}
+                <Button className={styles.pagination} onClick={handleClickNext}>
+                    {NEXT}
+                </Button>
             </div>
             <EditMovieModal
                 movieId={movieId}
                 show={showEditModal}
                 onCloseModal={handleCloseEditModal} />
             <DeleteMovieModal
+                movieId={movieId}
                 show={showDeleteModal}
                 onCloseModal={handleCloseDeleteModal} />
         </Fragment>
     );
 };
 
-MovieList.propTypes = COMPONENT_PROPS;
-MovieList.defaultProps = DEFAULT_PROPS;
+ListContainer.propTypes = COMPONENT_PROPS;
+ListContainer.defaultProps = DEFAULT_PROPS;
+
+const MovieList = connect(mapStateToProps, { getMovies })(ListContainer);
 
 export default MovieList;

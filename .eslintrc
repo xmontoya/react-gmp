@@ -23,9 +23,11 @@
         "comma-dangle": ["error", "never"],
         "import/no-unresolved": 0,
         "import/order": 0,
+        "import/prefer-default-export": 0,
         "indent": [2, 4],
         "linebreak-style": "off",
         "no-else-return": ["error", { "allowElseIf": true}],
+        "no-shadow": "off",
         "object-curly-newline": "off",
 
         "react/jsx-closing-bracket-location": [2, "after-props"],
