@@ -4,4 +4,8 @@
     font-size: 20px;
     text-align: center;
     text-decoration: none;
+
+    &:hover {
+        cursor: pointer;
+    }
 }

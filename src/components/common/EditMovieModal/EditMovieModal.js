@@ -9,35 +9,38 @@ import Button from 'components/common/Button';
 import FormInput from 'components/common/FormInput';
 import Modal from 'components/common/Modal';
 
+import useMovie from 'hooks/useMovie';
+
 import * as Labels from 'constants/Labels';
 
 const COMPONENT_PROPS = {
-    movie: PropTypes.object,
-    show: PropTypes.bool,
-    onCloseModal: PropTypes.func
+    movieId: PropTypes.number,
+    show: PropTypes.bool.isRequired,
+    onCloseModal: PropTypes.func.isRequired
 };
 
 const DEFAULT_PROPS = {
-    movie: {
-        id: 0,
-        title: '',
-        release_date: '',
-        poster_path: '',
-        genres: [],
-        overview: '',
-        runtime: ''
-    }
+    movieId: null
 };
 
-const EditMovieModal = ({ movie, show, onCloseModal }) => {
-    const isEdit = Boolean(movie && movie.id);
+const EditMovieModal = ({ movieId, show, onCloseModal }) => {
+    const { movie } = useMovie(movieId);
+    const isEdit = Boolean(movieId);
+    const {
+        genres = [],
+        overview,
+        posterPath,
+        releaseDate,
+        runtime,
+        title
+    } = show && isEdit && movie;
 
     const formTitle = isEdit ? Labels.EDIT_MOVIE : Labels.ADD_MOVIE;
 
-    const movieId = isEdit && (
+    const movieIdLabel = isEdit && (
         <Fragment>
-            <span className={styles.movieIdLabel} >{Labels.MOVIE_ID}</span>
-            <span className={styles.movieIdValue} >{movie.id}</span>
+            <span className={styles.movieIdLabel}>{Labels.MOVIE_ID}</span>
+            <span className={styles.movieIdValue}>{movieId}</span>
         </Fragment>
     );
 
@@ -46,13 +49,13 @@ const EditMovieModal = ({ movie, show, onCloseModal }) => {
             <section className={styles.editCard}>
                 <span className={styles.title}>{formTitle}</span>
                 <div>
-                    {movieId}
-                    <FormInput label={Labels.TITLE} name='title' placeholder="Title here" value={movie.title} />
-                    <FormInput label={Labels.RELEASE_DATE} name='release_date' placeholder="Select Date" value={movie.release_date} />
-                    <FormInput label={Labels.MOVIE_URL} name='poster_path' placeholder="Movie URL here" value={movie.poster_path} />
-                    <FormInput label={Labels.GENRE} name='genre' placeholder="Select Genre" value={movie.genres[0]} />
-                    <FormInput label={Labels.OVERVIEW} name='overview' placeholder="Overview here" value={movie.overview} />
-                    <FormInput label={Labels.RUNTIME} name='runtime' placeholder="Runtime here" type="number" value={movie.runtime} />
+                    {movieIdLabel}
+                    <FormInput label={Labels.TITLE} name="title" placeholder="Title here" value={title} />
+                    <FormInput label={Labels.RELEASE_DATE} name="releaseDate" placeholder="Select Date" value={releaseDate} />
+                    <FormInput label={Labels.MOVIE_URL} name="posterPath" placeholder="Movie URL here" value={posterPath} />
+                    <FormInput label={Labels.GENRE} name="genre" placeholder="Select Genre" value={genres[0]} />
+                    <FormInput label={Labels.OVERVIEW} name="overview" placeholder="Overview here" value={overview} />
+                    <FormInput label={Labels.RUNTIME} name="runtime" placeholder="Runtime here" type="number" value={runtime} />
                 </div>
                 <div className={styles.footer}>
                     <Button className={classnames(styles.footerButton, styles.resetButton)}>

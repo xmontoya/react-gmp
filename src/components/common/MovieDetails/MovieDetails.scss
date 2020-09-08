@@ -1,0 +1,71 @@
+@import 'assets/styles/variables';
+
+.detailsContainer {
+    height: 600;
+    display: flex;
+}
+
+.detailsImage {
+    max-height: 300px;
+    max-width: 270px;
+    object-fit: contain;
+    width: 30%;
+}
+
+.image {
+    width: 100%;
+}
+
+.detailsInfo {
+    color: $white-color;
+    width: 70%;
+    padding-left: 30px;
+    padding-top: 30px;
+}
+
+.titleSection {
+    display: flex;
+}
+
+.titleContainer {
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+.title {
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+.scoreContainer {
+    min-height: 40px;
+    min-width: 55px;
+    border: 1px solid;
+    border-radius: 50%;
+    margin-left: 20px;
+    padding-top: 12px;
+    text-align: center;
+}
+
+.score {
+    color: $green-color;
+    font-size: 24px;
+}
+
+.genresSection {
+    font-size: 14px;
+}
+
+.infoSection {
+    color: $red-color;
+    font-size: 24px;
+    margin: 16px 0px;
+}
+
+.duration {
+    margin-left: 50px;
+}
+
+.bodySection {
+    font-size: 16px;
+}

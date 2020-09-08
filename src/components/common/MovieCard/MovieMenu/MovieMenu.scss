@@ -1,0 +1,48 @@
+@import 'assets/styles/variables';
+
+.default {
+    background-color: $background-color;
+    border-radius: 3px;
+    color: $white-color;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 120px;
+    z-index: 1;
+}
+
+.closeButton {
+    background-color: $background-color;
+    border: none;
+    color: $white-color;
+    float: right;
+    margin: 2px;
+}
+
+.menuList {
+    list-style-type: none;
+    padding-inline-start: 5px;
+    padding-top: 10px;
+}
+
+.menuElement {
+    width: 100%;
+    margin-bottom: 5px;
+
+    :hover {
+        background-color: $red-color;
+    }
+}
+
+.menuButton {
+    background-color: $background-color;
+    border: none;
+    color: $white-color;
+    font-size: 18px;
+    text-align: left;
+    width: 100%;
+}
+
+.menuDisplayNone {
+    display: none;
+}

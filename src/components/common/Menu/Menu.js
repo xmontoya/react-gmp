@@ -5,37 +5,35 @@ import PropTypes from 'prop-types';
 
 import FormDropdown from 'components/common/FormDropdown';
 
-import {RELEASE_DATE, TITLE} from 'constants/Labels';
+import { RELEASE_DATE, TITLE } from 'constants/Labels';
 
 const COMPONENT_PROPS = {
-    sorting: PropTypes.string,
-    onSortingChange: PropTypes.func
+    sorting: PropTypes.string.isRequired,
+    onSortingChange: PropTypes.func.isRequired
 };
 
 const LEFT_SECTION = ['ALL', 'DOCUMENTARY', 'COMEDY', 'HORROR', 'CRIME'];
 const SORT_OPTIONS = [{
     label: RELEASE_DATE,
-    value: 'release_date'
+    value: 'releaseDate'
 }, {
     label: TITLE,
     value: 'title'
 }];
 
-const leftSection = LEFT_SECTION.map((section, index) => <p key={index}>{section}</p>);
+const leftSection = LEFT_SECTION.map(section => <p key={section}>{section}</p>);
 
-const Menu = ({ sorting, onSortingChange}) => {
-    return (
-        <div className={styles.mainMenu}>
-            <div className={styles.leftSection}>
-                {leftSection}
-            </div>
-            <div className={styles.rightSection}>
-                <p style={{float: 'left' }} >SORT BY</p>
-                <FormDropdown name="sortBy" options={SORT_OPTIONS} value={sorting} onChange={onSortingChange} />
-            </div>
+const Menu = ({ sorting, onSortingChange }) => (
+    <div className={styles.mainMenu}>
+        <div className={styles.leftSection}>
+            {leftSection}
         </div>
-    );
-};
+        <div className={styles.rightSection}>
+            <p style={{ float: 'left' }}>SORT BY</p>
+            <FormDropdown name="sortBy" options={SORT_OPTIONS} value={sorting} onChange={onSortingChange} />
+        </div>
+    </div>
+);
 
 Menu.propTypes = COMPONENT_PROPS;
 

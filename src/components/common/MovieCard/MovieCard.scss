@@ -1,0 +1,67 @@
+@import 'assets/styles/variables';
+
+.cardContainer {
+    width: 33%;
+}
+
+.cardBody {
+    height: auto;
+    max-width: 300px;
+    color: $white-color;
+    padding: 10px 40px;
+}
+
+.cardImage {
+    height: 80%;
+    width: 100%;
+    object-fit: contain;
+    position: relative;
+}
+
+.image {
+    width: 100%;
+}
+
+.movieMenuButton {
+    background-color: $background-color;
+    border-radius: 50%;
+    color: $white-color;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 30px;
+}
+
+.movieSelectButton {
+    background: transparent;
+}
+
+.info {
+    height: auto;
+    margin: 10px 0;
+}
+
+.titleSection {
+    width: 100%;
+}
+
+.title {
+    font-size: 20px;
+    padding: 3px 0px;
+}
+
+.year {
+    border: 1px solid;
+    border-color: $white-color;
+    border-radius: 6px;
+    float: right;
+    font-size: 20px;
+    font-weight: lighter;
+    padding: 3px 6px;
+}
+
+.categories {
+    color: $gray-light-color;
+    font-size: 16px;
+    margin: 5px 0 0 0;
+}

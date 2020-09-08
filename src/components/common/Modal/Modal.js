@@ -10,8 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/common/Button';
 
 const COMPONENT_PROPS = {
-    show: PropTypes.bool,
-    onCloseModal: PropTypes.func
+    show: PropTypes.bool.isRequired,
+    onCloseModal: PropTypes.func.isRequired
 };
 
 const Modal = ({ children, show, onCloseModal }) => {

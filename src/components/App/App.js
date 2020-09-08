@@ -1,24 +1,29 @@
 import styles from './App.scss';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import ErrorBoundary from 'components/common/ErrorBoundary';
-import Footer from 'components/Footer';
-import Header from 'components/Header';
-import Home from 'components/Home';
+
+import ContentSection from 'components/ContentSection';
+import FooterSection from 'components/FooterSection';
+import TopSection from 'components/TopSection';
 
 const App = () => {
+    const [movieId, setMovieId] = useState(null);
+
+    const handleMovieIdChange = selectedMovieId => {
+        setMovieId(selectedMovieId);
+    };
+
     return (
         <div className={styles.app}>
             <ErrorBoundary>
-                <Header />
-                <div className={styles.mainContent}>
-                    <Home />
-                </div>
-                <Footer />
+                <TopSection movieId={movieId} onMovieIdChange={handleMovieIdChange} />
+                <ContentSection onMovieIdChange={handleMovieIdChange} />
+                <FooterSection />
             </ErrorBoundary>
         </div>
     );
-}
+};
 
 export default App;

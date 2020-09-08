@@ -7,7 +7,6 @@ import classnames from 'classnames';
 
 const COMPONENT_PROPS = {
     className: PropTypes.string,
-    label: PropTypes.string,
     onClick: PropTypes.func
 };
 
@@ -16,8 +15,8 @@ const DEFAULT_PROPS = {
     onClick: null
 };
 
-const Button = ({ children, className, onClick}) => {
-    const cls = classnames(styles.default, className);
+const Button = ({ children, className, onClick }) => {
+    const cls = classnames([styles.default, className]);
 
     const handleClick = e => {
         e.preventDefault();
@@ -30,7 +29,7 @@ const Button = ({ children, className, onClick}) => {
     };
 
     return (
-        <button className={cls} onClick={handleClick} >
+        <button className={cls} type="button" onClick={handleClick}>
             {children}
         </button>
     );
