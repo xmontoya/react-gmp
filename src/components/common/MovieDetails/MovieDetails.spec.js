@@ -1,15 +1,19 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
+
+import movieStore from 'redux/store/movieStore';
 
 import MovieDetails from './MovieDetails';
 
-import { KILL_BILL_V2 } from 'data/mocks/movies';
-import { movieTransform } from 'data/transforms/movies';
-
-const mockMovie = movieTransform(KILL_BILL_V2);
+jest.mock('redux/actions/MovieActions');
 
 describe('MovieDetails Component', () => {
-    const setup = () => render(<MovieDetails movie={mockMovie} />);
+    const setup = () => render(
+        <Provider store={movieStore}>
+            <MovieDetails movieId={393} />
+        </Provider>
+    );
 
     it('should render the correct structure', () => {
         const { asFragment } = setup();

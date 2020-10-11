@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import FormDropdown from 'components/common/FormDropdown';
 
-import { RELEASE_DATE, TITLE } from 'constants/Labels';
+import { RATING, RELEASE_DATE, TITLE } from 'constants/Labels';
 
 const COMPONENT_PROPS = {
     sorting: PropTypes.string.isRequired,
@@ -15,10 +15,13 @@ const COMPONENT_PROPS = {
 const LEFT_SECTION = ['ALL', 'DOCUMENTARY', 'COMEDY', 'HORROR', 'CRIME'];
 const SORT_OPTIONS = [{
     label: RELEASE_DATE,
-    value: 'releaseDate'
+    value: 'release_date'
 }, {
     label: TITLE,
     value: 'title'
+}, {
+    label: RATING,
+    value: 'vote_average'
 }];
 
 const leftSection = LEFT_SECTION.map(section => <p key={section}>{section}</p>);

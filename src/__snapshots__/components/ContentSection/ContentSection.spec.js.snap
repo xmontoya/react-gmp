@@ -45,7 +45,7 @@ exports[`ContentSection Component should render the correct structure 1`] = `
               class="inputField"
             >
               <option
-                value="releaseDate"
+                value="release_date"
               >
                 RELEASE DATE
               </option>
@@ -53,6 +53,11 @@ exports[`ContentSection Component should render the correct structure 1`] = `
                 value="title"
               >
                 TITLE
+              </option>
+              <option
+                value="vote_average"
+              >
+                RATING
               </option>
             </select>
           </div>
@@ -629,200 +634,13 @@ exports[`ContentSection Component should render the correct structure 1`] = `
           </div>
         </div>
       </div>
-      <div
-        class="modal displayNone"
-      >
-        <section
-          class="modalMain"
+      <div>
+        <button
+          class="default pagination"
+          type="button"
         >
-          <button
-            class="default closeButton"
-            type="button"
-          >
-            <i
-              class="fa"
-            />
-          </button>
-          <div
-            class="modalBody"
-          >
-            <section
-              class="editCard"
-            >
-              <span
-                class="title"
-              >
-                ADD MOVIE
-              </span>
-              <div>
-                <div
-                  class="inputContainer"
-                >
-                  <label
-                    class="inputLabel"
-                    for="title"
-                  >
-                    TITLE
-                  </label>
-                  <input
-                    class="inputField"
-                    name="title"
-                    placeholder="Title here"
-                    type="text"
-                    value=""
-                  />
-                </div>
-                <div
-                  class="inputContainer"
-                >
-                  <label
-                    class="inputLabel"
-                    for="releaseDate"
-                  >
-                    RELEASE DATE
-                  </label>
-                  <input
-                    class="inputField"
-                    name="releaseDate"
-                    placeholder="Select Date"
-                    type="text"
-                    value=""
-                  />
-                </div>
-                <div
-                  class="inputContainer"
-                >
-                  <label
-                    class="inputLabel"
-                    for="posterPath"
-                  >
-                    MOVIE URL
-                  </label>
-                  <input
-                    class="inputField"
-                    name="posterPath"
-                    placeholder="Movie URL here"
-                    type="text"
-                    value=""
-                  />
-                </div>
-                <div
-                  class="inputContainer"
-                >
-                  <label
-                    class="inputLabel"
-                    for="genre"
-                  >
-                    GENRE
-                  </label>
-                  <input
-                    class="inputField"
-                    name="genre"
-                    placeholder="Select Genre"
-                    type="text"
-                    value=""
-                  />
-                </div>
-                <div
-                  class="inputContainer"
-                >
-                  <label
-                    class="inputLabel"
-                    for="overview"
-                  >
-                    OVERVIEW
-                  </label>
-                  <input
-                    class="inputField"
-                    name="overview"
-                    placeholder="Overview here"
-                    type="text"
-                    value=""
-                  />
-                </div>
-                <div
-                  class="inputContainer"
-                >
-                  <label
-                    class="inputLabel"
-                    for="runtime"
-                  >
-                    RUNTIME
-                  </label>
-                  <input
-                    class="inputField"
-                    name="runtime"
-                    placeholder="Runtime here"
-                    type="number"
-                    value=""
-                  />
-                </div>
-              </div>
-              <div
-                class="footer"
-              >
-                <button
-                  class="default footerButton resetButton"
-                  type="button"
-                >
-                  RESET
-                </button>
-                <button
-                  class="default footerButton submitButton"
-                  type="button"
-                >
-                  SUBMIT
-                </button>
-              </div>
-            </section>
-          </div>
-        </section>
-      </div>
-      <div
-        class="modal displayNone"
-      >
-        <section
-          class="modalMain"
-        >
-          <button
-            class="default closeButton"
-            type="button"
-          >
-            <i
-              class="fa"
-            />
-          </button>
-          <div
-            class="modalBody"
-          >
-            <section
-              class="deleteMessage"
-            >
-              <span
-                class="title"
-              >
-                DELETE MOVIE
-              </span>
-              <div
-                class="body"
-              >
-                <span>
-                  Are you sure you want to delete this movie?
-                </span>
-              </div>
-              <div
-                class="footer"
-              >
-                <button
-                  class="default confirmButton"
-                  type="button"
-                >
-                  CONFIRM
-                </button>
-              </div>
-            </section>
-          </div>
-        </section>
+          Next
+        </button>
       </div>
     </div>
   </div>

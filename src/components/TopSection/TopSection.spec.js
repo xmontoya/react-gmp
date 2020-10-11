@@ -1,7 +1,12 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 
+import movieStore from 'redux/store/movieStore';
+
 import TopSection from './TopSection';
+
+jest.mock('redux/actions/MovieActions');
 
 const defaultProps = {
     moveId: null,
@@ -15,7 +20,7 @@ describe('TopSection Component', () => {
             ...props
         };
 
-        return render(<TopSection {...mockProps} />);
+        return render(<Provider store={movieStore}><TopSection {...mockProps} /></Provider>);
     };
 
     it('should render the correct structure', () => {
@@ -32,9 +37,9 @@ describe('TopSection Component', () => {
     });
 
     it('should render movie info for selected movie Id.', async () => {
-        const { getByText } = setup({ movieId: 150540 });
+        const { getByText } = setup({ movieId: 393 });
 
-        expect(getByText('Inside Out')).toBeInTheDocument();
-        expect(getByText('Drama, Comedy, Animation, Family')).toBeInTheDocument();
+        expect(getByText('Kill Bill: Vol. 2')).toBeInTheDocument();
+        expect(getByText('Action, Crime, Thriller')).toBeInTheDocument();
     });
 });
