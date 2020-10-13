@@ -6,11 +6,15 @@ const getRequestMovie = data => {
         posterPath,
         releaseDate,
         voteAverage,
+        genres,
         ...otherData
     } = data;
 
+    const genresList = typeof genres === 'string' ? genres.split(',') : genres;
+
     return {
         ...otherData,
+        genres: genresList,
         poster_path: posterPath,
         release_date: releaseDate,
         vote_average: voteAverage

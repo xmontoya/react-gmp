@@ -1,10 +1,11 @@
 import styles from './EditMovieModal.scss';
 
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import classnames from 'classnames';
+import { useFormik } from 'formik';
 
 import Button from 'components/common/Button';
 import FormInput from 'components/common/FormInput';
@@ -13,6 +14,8 @@ import Modal from 'components/common/Modal';
 import { addMovie, editMovie, getMovieById } from 'redux/actions/movieActions';
 
 import * as Labels from 'constants/Labels';
+
+import { validateRules } from './config/movieValidator';
 
 const mapStateToProps = state => ({ movie: state.movie });
 
@@ -63,31 +66,6 @@ const ModalContainer = props => {
         }
     }, [movie, movieId, setFormValues]);
 
-    const handleChange = useCallback(event => {
-        const { name, value } = event.target;
-        let inputValue = value;
-
-        if (name === 'genres') {
-            inputValue = [value];
-        }
-
-        if (name === 'runtime') {
-            inputValue = parseInt(value, 10);
-        }
-
-        setFormValues({ ...formValues, [name]: inputValue });
-    }, [formValues, setFormValues]);
-
-    const handleSubmit = useCallback(() => {
-        if (movieId) {
-            editMovie(formValues);
-        } else {
-            addMovie(formValues);
-        }
-
-        onCloseModal();
-    }, [addMovie, editMovie, formValues, movieId, onCloseModal]);
-
     const formTitle = isEdit ? Labels.EDIT_MOVIE : Labels.ADD_MOVIE;
 
     const movieIdLabel = isEdit && (
@@ -97,32 +75,91 @@ const ModalContainer = props => {
         </Fragment>
     );
 
-    const gender = formValues.genres.length ? formValues.genres[0] : '';
+    const formik = useFormik({
+        enableReinitialize: true,
+        initialValues: formValues,
+        validate: validateRules,
+        onSubmit: values => {
+            if (movieId) {
+                editMovie(values);
+            } else {
+                addMovie(values);
+            }
+
+            onCloseModal();
+        }
+    });
 
     return (
         <Modal show={show} onCloseModal={onCloseModal}>
             <section className={styles.editCard}>
                 <span className={styles.title}>{formTitle}</span>
-                <div>
-                    {movieIdLabel}
-                    <FormInput label={Labels.TITLE} name="title" placeholder="Title here" value={formValues.title} onChange={handleChange} />
-                    <FormInput label={Labels.RELEASE_DATE} name="releaseDate" placeholder="Select Date" value={formValues.releaseDate} onChange={handleChange} />
-                    <FormInput label={Labels.MOVIE_URL} name="posterPath" placeholder="Movie URL here" value={formValues.posterPath} onChange={handleChange} />
-                    <FormInput label={Labels.GENRE} name="genres" placeholder="Select Genre" value={gender} onChange={handleChange} />
-                    <FormInput label={Labels.OVERVIEW} name="overview" placeholder="Overview here" value={formValues.overview} onChange={handleChange} />
-                    <FormInput label={Labels.RUNTIME} name="runtime" placeholder="Runtime here" type="number" value={formValues.runtime} onChange={handleChange} />
-                </div>
-                <div className={styles.footer}>
-                    <Button
-                        className={classnames(styles.footerButton, styles.resetButton)}>
-                        {Labels.RESET}
-                    </Button>
-                    <Button
-                        className={classnames(styles.footerButton, styles.submitButton)}
-                        onClick={handleSubmit}>
-                        {Labels.SUBMIT}
-                    </Button>
-                </div>
+                <form>
+                    <div>
+                        {movieIdLabel}
+                        <FormInput
+                            error={formik.errors.title}
+                            id="title"
+                            label={Labels.TITLE}
+                            name="title"
+                            placeholder="Title here"
+                            value={formik.values.title}
+                            onChange={formik.handleChange} />
+                        <FormInput
+                            error={formik.errors.releaseDate}
+                            id="releaseDate"
+                            label={Labels.RELEASE_DATE}
+                            name="releaseDate"
+                            placeholder="Select Date"
+                            value={formik.values.releaseDate}
+                            onChange={formik.handleChange} />
+                        <FormInput
+                            error={formik.errors.posterPath}
+                            id="posterPath"
+                            label={Labels.MOVIE_URL}
+                            name="posterPath"
+                            placeholder="Movie URL here"
+                            value={formik.values.posterPath}
+                            onChange={formik.handleChange} />
+                        <FormInput
+                            error={formik.errors.genres}
+                            id="genres"
+                            label={Labels.GENRE}
+                            name="genres"
+                            placeholder="Genres"
+                            value={formik.values.genres}
+                            onChange={formik.handleChange} />
+                        <FormInput
+                            error={formik.errors.overview}
+                            id="overview"
+                            label={Labels.OVERVIEW}
+                            name="overview"
+                            placeholder="Overview here"
+                            value={formik.values.overview}
+                            onChange={formik.handleChange} />
+                        <FormInput
+                            error={formik.errors.runtime}
+                            id="runtime"
+                            label={Labels.RUNTIME}
+                            name="runtime"
+                            placeholder="Runtime here"
+                            type="number"
+                            value={formik.values.runtime}
+                            onChange={formik.handleChange} />
+                    </div>
+                    <div className={styles.footer}>
+                        <Button
+                            className={classnames(styles.footerButton, styles.resetButton)}>
+                            {Labels.RESET}
+                        </Button>
+                        <Button
+                            className={classnames(styles.footerButton, styles.submitButton)}
+                            type="submit"
+                            onClick={formik.handleSubmit}>
+                            {Labels.SUBMIT}
+                        </Button>
+                    </div>
+                </form>
             </section>
         </Modal>
     );
