@@ -11,7 +11,12 @@ const COMPONENT_PROPS = {
 };
 
 const ContentSection = ({ onMovieIdChange }) => {
+    const [filter, setFilter] = useState('');
     const [sorting, setSorting] = useState('release_date');
+
+    const handleFilterChange = useCallback(filterValue => {
+        setFilter(filterValue);
+    }, [setFilter]);
 
     const handleSortingChange = useCallback(sortingValue => {
         setSorting(sortingValue);
@@ -20,13 +25,17 @@ const ContentSection = ({ onMovieIdChange }) => {
     return (
         <div className={styles.mainContent}>
             <div className={styles.container}>
-                <Menu sorting={sorting} onSortingChange={handleSortingChange} />
+                <Menu
+                    filter={filter}
+                    sorting={sorting}
+                    onFilterChange={handleFilterChange}
+                    onSortingChange={handleSortingChange} />
                 <div className={styles.movieCount}>
                     <span className={styles.movieCountLabel}>
                         39 movies found
                     </span>
                 </div>
-                <MovieList sorting={sorting} onMovieIdChange={onMovieIdChange} />
+                <MovieList filter={filter} sorting={sorting} onMovieIdChange={onMovieIdChange} />
             </div>
         </div>
     );

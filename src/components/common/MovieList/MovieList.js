@@ -24,24 +24,26 @@ const COMPONENT_PROPS = {
         title: PropTypes.string,
         releaseDate: PropTypes.string
     })),
+    filter: PropTypes.string,
     sorting: PropTypes.string,
     onMovieIdChange: PropTypes.func.isRequired
 };
 
 const DEFAULT_PROPS = {
     movies: [],
+    filter: '',
     sorting: 'release_date'
 };
 
-const ListContainer = ({ getMovies, movies, sorting, onMovieIdChange }) => {
+const ListContainer = ({ getMovies, movies, filter, sorting, onMovieIdChange }) => {
     const [movieId, setMovieId] = useState(null);
     const [offset, setOffset] = useState(0);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
 
     useEffect(() => {
-        getMovies(10, offset, sorting);
-    }, [getMovies, offset, sorting]);
+        getMovies(10, filter, offset, sorting);
+    }, [getMovies, filter, offset, sorting]);
 
     const handleShowEditModal = useCallback(selectedMovieId => {
         setMovieId(selectedMovieId);

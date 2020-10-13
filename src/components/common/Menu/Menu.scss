@@ -13,11 +13,24 @@
     display: flex;
     width: 40%;
     justify-content: space-between;
+}
 
-    p:nth-child(1) {
-        border-bottom: 1px solid $red-color;
-        padding-bottom: 10px;
+.filterButton {
+    background: transparent;
+    border: none;
+    color: $white-color;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+        cursor: pointer;
     }
+}
+
+.selected {
+    border-bottom: 1px solid $red-color;
+    padding-bottom: 10px;
 }
 
 .rightSection {

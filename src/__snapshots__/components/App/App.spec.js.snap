@@ -77,21 +77,30 @@ exports[`App Component should render the correct structure 1`] = `
           <div
             class="leftSection"
           >
-            <p>
+            <button
+              class="filterButton selected"
+              type="button"
+            >
               ALL
-            </p>
-            <p>
-              DOCUMENTARY
-            </p>
-            <p>
+            </button>
+            <button
+              class="filterButton"
+              type="button"
+            >
+              ACTION
+            </button>
+            <button
+              class="filterButton"
+              type="button"
+            >
               COMEDY
-            </p>
-            <p>
-              HORROR
-            </p>
-            <p>
-              CRIME
-            </p>
+            </button>
+            <button
+              class="filterButton"
+              type="button"
+            >
+              ANIMATION
+            </button>
           </div>
           <div
             class="rightSection"

@@ -2,17 +2,33 @@ import styles from './Menu.scss';
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import FormDropdown from 'components/common/FormDropdown';
 
 import { RATING, RELEASE_DATE, TITLE } from 'constants/Labels';
 
 const COMPONENT_PROPS = {
+    filter: PropTypes.string.isRequired,
     sorting: PropTypes.string.isRequired,
+    onFilterChange: PropTypes.func.isRequired,
     onSortingChange: PropTypes.func.isRequired
 };
 
-const LEFT_SECTION = ['ALL', 'DOCUMENTARY', 'COMEDY', 'HORROR', 'CRIME'];
+const MOVIE_FILTERS = [{
+    label: 'ALL',
+    value: ''
+}, {
+    label: 'ACTION',
+    value: 'Action'
+}, {
+    label: 'COMEDY',
+    value: 'Comedy'
+}, {
+    label: 'ANIMATION',
+    value: 'Animation'
+}];
+
 const SORT_OPTIONS = [{
     label: RELEASE_DATE,
     value: 'release_date'
@@ -24,19 +40,32 @@ const SORT_OPTIONS = [{
     value: 'vote_average'
 }];
 
-const leftSection = LEFT_SECTION.map(section => <p key={section}>{section}</p>);
+const Menu = ({ filter, sorting, onFilterChange, onSortingChange }) => {
+    const movieFilters = MOVIE_FILTERS.map(({ label, value }) => {
+        const selectedClass = filter === value ? styles.selected : null;
+        return (
+            <button
+                className={classnames(styles.filterButton, selectedClass)}
+                key={label}
+                type="button"
+                onClick={() => onFilterChange(value)}>
+                {label}
+            </button>
+        );
+    });
 
-const Menu = ({ sorting, onSortingChange }) => (
-    <div className={styles.mainMenu}>
-        <div className={styles.leftSection}>
-            {leftSection}
+    return (
+        <div className={styles.mainMenu}>
+            <div className={styles.leftSection}>
+                {movieFilters}
+            </div>
+            <div className={styles.rightSection}>
+                <p style={{ float: 'left' }}>SORT BY</p>
+                <FormDropdown name="sortBy" options={SORT_OPTIONS} value={sorting} onChange={onSortingChange} />
+            </div>
         </div>
-        <div className={styles.rightSection}>
-            <p style={{ float: 'left' }}>SORT BY</p>
-            <FormDropdown name="sortBy" options={SORT_OPTIONS} value={sorting} onChange={onSortingChange} />
-        </div>
-    </div>
-);
+    );
+};
 
 Menu.propTypes = COMPONENT_PROPS;
 
