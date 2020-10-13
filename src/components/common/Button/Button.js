@@ -7,15 +7,17 @@ import classnames from 'classnames';
 
 const COMPONENT_PROPS = {
     className: PropTypes.string,
+    type: PropTypes.string,
     onClick: PropTypes.func
 };
 
 const DEFAULT_PROPS = {
     className: '',
+    type: 'button',
     onClick: null
 };
 
-const Button = ({ children, className, onClick }) => {
+const Button = ({ children, className, type, onClick }) => {
     const cls = classnames([styles.default, className]);
 
     const handleClick = e => {
@@ -29,7 +31,7 @@ const Button = ({ children, className, onClick }) => {
     };
 
     return (
-        <button className={cls} type="button" onClick={handleClick}>
+        <button className={cls} type={type} onClick={handleClick}>
             {children}
         </button>
     );

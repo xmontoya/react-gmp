@@ -30,6 +30,7 @@
         "no-shadow": "off",
         "object-curly-newline": "off",
 
+        "react/button-has-type": "off",
         "react/jsx-closing-bracket-location": [2, "after-props"],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/jsx-fragments": ["off"],
