@@ -43,6 +43,9 @@ const config = (env = {}, argv = {}) => {
             path: Paths.APP_DIST,
             publicPath: Paths.APP_ASSETS
         },
+        devServer: {
+            historyApiFallback: true
+        },
         module: {
             rules: [
                 {
