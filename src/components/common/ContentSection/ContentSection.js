@@ -1,18 +1,17 @@
 import styles from './ContentSection.scss';
 
 import React, { useCallback, useState } from 'react';
-import PropTypes from 'prop-types';
+
+import { useParams } from 'react-router-dom';
 
 import Menu from 'components/common/Menu';
 import MovieList from 'components/common/MovieList';
 
-const COMPONENT_PROPS = {
-    onMovieIdChange: PropTypes.func.isRequired
-};
-
-const ContentSection = ({ onMovieIdChange }) => {
+const ContentSection = () => {
     const [filter, setFilter] = useState('');
     const [sorting, setSorting] = useState('release_date');
+
+    const { query } = useParams();
 
     const handleFilterChange = useCallback(filterValue => {
         setFilter(filterValue);
@@ -30,17 +29,10 @@ const ContentSection = ({ onMovieIdChange }) => {
                     sorting={sorting}
                     onFilterChange={handleFilterChange}
                     onSortingChange={handleSortingChange} />
-                <div className={styles.movieCount}>
-                    <span className={styles.movieCountLabel}>
-                        39 movies found
-                    </span>
-                </div>
-                <MovieList filter={filter} sorting={sorting} onMovieIdChange={onMovieIdChange} />
+                <MovieList filter={filter} query={query} sorting={sorting} />
             </div>
         </div>
     );
 };
-
-ContentSection.propTypes = COMPONENT_PROPS;
 
 export default ContentSection;

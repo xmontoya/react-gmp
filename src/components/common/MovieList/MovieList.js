@@ -12,7 +12,7 @@ import MovieCard from 'components/common/MovieCard';
 
 import { getMovies } from 'redux/actions/movieActions';
 
-import { NEXT, PREVIOUS } from 'constants/Labels';
+import { NEXT, PREVIOUS, NO_MOVIES_FOUND } from 'constants/Labels';
 
 const mapStateToProps = state => ({ movies: state.movies });
 
@@ -25,25 +25,26 @@ const COMPONENT_PROPS = {
         releaseDate: PropTypes.string
     })),
     filter: PropTypes.string,
-    sorting: PropTypes.string,
-    onMovieIdChange: PropTypes.func.isRequired
+    query: PropTypes.string,
+    sorting: PropTypes.string
 };
 
 const DEFAULT_PROPS = {
     movies: [],
     filter: '',
+    query: '',
     sorting: 'release_date'
 };
 
-const ListContainer = ({ getMovies, movies, filter, sorting, onMovieIdChange }) => {
+const ListContainer = ({ getMovies, movies, filter, query, sorting }) => {
     const [movieId, setMovieId] = useState(null);
     const [offset, setOffset] = useState(0);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
 
     useEffect(() => {
-        getMovies(10, filter, offset, sorting);
-    }, [getMovies, filter, offset, sorting]);
+        getMovies(10, filter, offset, query, sorting);
+    }, [getMovies, filter, offset, query, sorting]);
 
     const handleShowEditModal = useCallback(selectedMovieId => {
         setMovieId(selectedMovieId);
@@ -78,10 +79,15 @@ const ListContainer = ({ getMovies, movies, filter, sorting, onMovieIdChange }) 
         <MovieCard
             key={movie.id}
             movie={movie}
-            onMovieIdChange={onMovieIdChange}
             onShowDeleteModal={handleShowDeleteModal}
             onShowEditModal={handleShowEditModal} />
     ));
+
+    const noMoviesFound = !movies.length && (
+        <div className={styles.noMoviesFound}>
+            <p>{NO_MOVIES_FOUND}</p>
+        </div>
+    );
 
     const previousButton = offset > 0 && (
         <Button className={styles.pagination} onClick={handleClickPrevious}>
@@ -89,16 +95,21 @@ const ListContainer = ({ getMovies, movies, filter, sorting, onMovieIdChange }) 
         </Button>
     );
 
+    const nextButton = Boolean(movies.length) && (
+        <Button className={styles.pagination} onClick={handleClickNext}>
+            {NEXT}
+        </Button>
+    );
+
     return (
         <Fragment>
+            {noMoviesFound}
             <div className={styles.list}>
                 {movieList}
             </div>
             <div>
                 {previousButton}
-                <Button className={styles.pagination} onClick={handleClickNext}>
-                    {NEXT}
-                </Button>
+                {nextButton}
             </div>
             <EditMovieModal
                 movieId={movieId}

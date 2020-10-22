@@ -1,0 +1,13 @@
+@import 'assets/styles/variables';
+
+.buttonTop {
+    background-color: rgba($color: $gray-light-color, $alpha: 0.9);
+    color: $red-color;
+    margin-right: 16px;
+    padding: 8px 8px;
+}
+
+.noContent {
+    min-height: 550px;
+    background-color: $background-color;
+}

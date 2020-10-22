@@ -63,9 +63,12 @@ export const deleteMovie = id => {
     };
 };
 
-export const getMovies = (limit = 10, filter = '', offset = 0, sortBy = 'release_date') => {
-    const MovieFilter = filter ? `&filter=${filter}` : '';
-    const url = `${API_URL}movies?limit=${limit}&offset=${offset}&sortBy=${sortBy}&sortOrder=desc${MovieFilter}`;
+export const getMovies = (limit = 10, filter = '', offset = 0, query, sortBy = 'release_date') => {
+    const movieQuery = query ? `&search=${query}&searchBy=title` : '';
+    const movieFilter = filter ? `&filter=${filter}` : '';
+    const params = `?limit=${limit}&offset=${offset}&sortBy=${sortBy}&sortOrder=desc`;
+
+    const url = `${API_URL}movies${params}${movieFilter}${movieQuery}`;
 
     return async dispatch => {
         const response = await fetch(url, { method: GET });

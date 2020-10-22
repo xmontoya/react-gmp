@@ -1,29 +1,29 @@
 import styles from './App.scss';
 
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import ErrorBoundary from 'components/common/ErrorBoundary';
+import FooterSection from 'components/common/FooterSection';
+import NotFoundPage from 'components/common/NotFoundPage';
 
-import ContentSection from 'components/ContentSection';
-import FooterSection from 'components/FooterSection';
-import TopSection from 'components/TopSection';
+import SearchPage from 'components/SearchPage';
+import MoviePage from 'components/MoviePage';
 
-const App = () => {
-    const [movieId, setMovieId] = useState(null);
-
-    const handleMovieIdChange = selectedMovieId => {
-        setMovieId(selectedMovieId);
-    };
-
-    return (
+const App = () => (
+    <BrowserRouter>
         <div className={styles.app}>
             <ErrorBoundary>
-                <TopSection movieId={movieId} onMovieIdChange={handleMovieIdChange} />
-                <ContentSection onMovieIdChange={handleMovieIdChange} />
-                <FooterSection />
+                <Switch>
+                    <Route path="/" exact component={SearchPage} />
+                    <Route path="/search/:query?" component={SearchPage} />
+                    <Route path="/film/:id?" component={MoviePage} />
+                    <Route path="*" component={NotFoundPage} />
+                </Switch>
             </ErrorBoundary>
+            <FooterSection />
         </div>
-    );
-};
+    </BrowserRouter>
+);
 
 export default App;
