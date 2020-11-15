@@ -1,4 +1,10 @@
-import { GET_MOVIE, GET_MOVIES } from 'constants/actions';
+import {
+    ADD_MOVIE,
+    DELETE_MOVIE,
+    EDIT_MOVIE,
+    GET_MOVIE,
+    GET_MOVIES
+} from 'constants/actions';
 
 import {
     PULP_FICTION,
@@ -18,6 +24,12 @@ const movieList = {
         RESERVOIR_DOGS
     ]
 };
+
+export const addMovie = () => ({ type: ADD_MOVIE, payload: PULP_FICTION });
+
+export const editMovie = () => ({ type: EDIT_MOVIE, payload: KILL_BILL_V2 });
+
+export const deleteMovie = id => ({ type: DELETE_MOVIE, payload: { id } });
 
 export const getMovies = () => ({ type: GET_MOVIES, payload: movieList });
 
