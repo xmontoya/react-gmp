@@ -1,6 +1,6 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 
@@ -9,7 +9,7 @@ import movieStore from 'redux/store/movieStore';
 jest.mock('redux/actions/MovieActions');
 
 describe('App Component', () => {
-    const setup = () => render(<Provider store={movieStore}><App /></Provider>);
+    const setup = () => render(<App Router={BrowserRouter} store={movieStore} />);
 
     it('should render the correct structure', () => {
         const { asFragment } = setup();
